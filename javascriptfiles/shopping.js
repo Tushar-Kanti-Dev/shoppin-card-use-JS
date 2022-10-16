@@ -10,6 +10,27 @@ function updateCaseNumber(product, price, isIncreasing) {
     productInput.value = productNumber;
     const productTotal = document.getElementById(product + '-total');
     productTotal.innerText = productNumber * price;
+    calculateTotal()
+}
+
+function getInputValue(product) {
+    const phoneInput = document.getElementById(product + '-number');
+    const phoneNumber = parseInt(phoneInput.value);
+    return phoneNumber;
+}
+
+function calculateTotal() {
+    const phoneTotal = getInputValue('phone') * 1219;
+    const caseTotal = getInputValue('case') * 59;
+    const subTotal = phoneTotal + caseTotal;
+    // percentage ber korar niyom
+    const taxAmount = (subTotal - 10) / 100;
+    // total amoun 
+    const totalPrice = subTotal + taxAmount;
+    // update HTML file 
+    document.getElementById('sub-total').innerText = subTotal;
+    document.getElementById('tax-amount').innerText = taxAmount;
+    document.getElementById('total-price').innerText = totalPrice;
 }
 // count phone handler 
 document.getElementById('phone-plus').addEventListener('click', function() {
